@@ -1,9 +1,9 @@
 # Напишите программу для. проверки истинности утверждения ¬(X ⋁ Y ⋁ Z) = ¬X ⋀ ¬Y ⋀ ¬Z для всех значений предикат.
 
+print('')
 print('2. Напишите программу для. проверки истинности утверждения ¬(X ⋁ Y ⋁ Z) = ¬X ⋀ ¬Y ⋀ ¬Z для всех значений предикат.')
 print('')
 print('Решение:')
-print('')
 
 # def logical_statement(x, y, z):
 #     print(f"¬({x} ⋁ {y} ⋁ {z}) = ¬{x} ⋀ ¬{y} ⋀ ¬{z} is {(not (x or y or z)) == (not x and not y and not z)}")
@@ -15,3 +15,10 @@ print('')
 # else:
 #     print("Ложно")
 
+def check(x,y,z):
+    print()
+    return ()
+if check(0,0,0) and check(0,0,1) and check(0,1,0) and check(0,1,1) and check(1,0,0) and check(1,0,1) and check(1,1,0) and check(1,1,1):
+    print(True)
+else:
+    print(False)

@@ -73,3 +73,31 @@ print(logic2)
 
 logic3 = 1 != 2 #True
 logic4 = 4 == 4 #True
+
+f1 = [1,2,3,4]
+print(f1)
+print(not 2 in f1) # False
+print(2 in f1) # True
+
+# Проверяем чётность
+
+f2 = [1,2,3,4]
+is_odd = f2[1] % 2 == 0 # = not f2[1] % 2 (одно и то же)
+print(is_odd)
+
+# Логические ветвления и управляющие конструкции
+# if else / if elif elif else
+# Циклы while и for
+
+list2 = [1,2,3,4,5] # Итерируемый объект, i - счетчик (можно также указать через запятую шаг цикла)
+for i in list2:
+    print(i**2)
+
+for j in range(10):
+    print(j) # Выводит все числа от 0 до 9
+
+for j in range(1, 4):
+    print(j) # Выводит все числа от 1 до 3
+
+for j in range(1, 10, 2):
+    print(j) # Выводит все числа от 1 до 9 с шагом 2
