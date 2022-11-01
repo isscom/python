@@ -3,30 +3,36 @@ print('C:\WINDOWS\System32\drivers\etc\\nst') # \n воспринимается 
 
 # 2. Напишите программу, которая подсчитает и выведет сумму квадратов всех двузначных чисел, делящихся на 9.
 # При решении задачи используйте комбинацию функций filter, map, sum. Обратите внимание: на 9 должно делиться исходное двузначное число, а не его квадрат.
-
 l = [i for i in range(10,100)]
 l1 = list(filter(lambda x: x%9 ==0, l))
 l2 = sum(list(map(lambda x: x**2, l1)))
 print(l2)
 
+# Вариант решения 2:
+# l = [i for i in range(10, 100)]
+# l1 = list(filter(lambda x: x % 9 == 0, l))
+# l2 = sum(list(map(lambda x: x**2, l1)))
+# print(l2)
 
-
+# Вариант решения 3:
+# list_input = [i for i in range(10, 100)]
+# list_input = list(filter(lambda i: i % 9 == 0, list_input))
+# list_input = list(map(lambda i: i*i, list_input))
+# print(list_input)
 
 # 3. Напишите функцию triangle(a, b, c), которая принимает на вход три длины отрезков и определяет, можно ли из этих отрезков составить треугольник.
-
 # Входные данные
 # Выходные данные
 # triangle(1, 1, 2)
-
-
 # Это не треугольник
 # triangle(7, 6, 10)
-
 # Это треугольник
-
-
-
-
+def triangle(x,y,z):
+    if x < (y+z) and y < (x+z) and z < (x+y):
+        print('Это треугольник')
+    else:
+        print('Это не треугольник')
+triangle(1,1,2)
 
 # 4. Напишите программу для обработки текста.
 
@@ -49,3 +55,14 @@ print(l2)
 # 0 - Ехал
 # 14 - Рак
 # 9 - Сунул
+
+a = []
+for i in range(4):
+    a.extend(input().replace('.', '').split())
+b = list(enumerate(a))
+sp = []
+b.sort(key=lambda x: x[1])
+for i in b:
+    if i[1][0].isupper() and i[1] not in sp:
+        print(*(i[0], '-', i[1]))
+        sp.append(i[1])
