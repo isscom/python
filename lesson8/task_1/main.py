@@ -3,7 +3,7 @@
 
 # [1, 2, 3, 5, 1, 5, 3, 10] => [2, 10]
 
-import unique as un
+import unique as mod_unic
 
 my_list = [1, 2, 3, 5, 1, 5, 3, 10]
-print(f'{my_list} => {un.get_unic(my_list)}')
+print(f'{my_list} => {mod_unic.get_unic(my_list)}')
