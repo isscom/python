@@ -60,70 +60,78 @@ if flag:
 else:
     print(f"Выиграл {player2}")
 
+# БОТ
+from random import randint
+
+a = int(input('Введите количество конфет'))
+hod = 0
+wins = {0: 'Игрок', 1: 'Бот'}
+while a > 0:
+    if a <= 28:
+        print(f'Выиграл {wins[hod]}')
+        break
+    if hod % 2 == 0:
+        print('Ход Игрока')
+        d = int(input('Введите количество конфет, которое хотите взять'))
+        a -= d
+        print(f'Осталось конфет: {a}')
+    else:
+        print('Ход Бота')
+        d = a % 29
+        a -= d
+        print(f'Осталось конфет: {a}')
+    hod = (hod + 1) % 2
+
 # 3. Создайте программу для игры в ""Крестики-нолики"".
 
-print('*'*100)
-print('\n')
-print('А теперь давайте сыграем в крестики нолики!')
+doska = list(range(1,10))
 
-board = list(range(1,10))
-
-def design_board(board):
-    print('-'*12)
+def draw_board(board):
     for i in range(3):
-        print('|', board[0+i*3],'|', board[1+i*3], '|', board[2+i*3], '|')
-        print('-'*12)
+        print ("|", doska[0+i*3], "|", doska[1+i*3], "|",doska[2+i*3], "|")
 
-# design_board(board)
-
-def choice(tic_tac):
+def stavim_hod(hod):
     valid = False
     while not valid:
-        player_index = input('Ваш ход, выберите ячейку ' + tic_tac + ' --> ')
-        try:
-            player_index =int(player_index)
-        except:
-            print('Что то не то нажали')
-            continue
-        if player_index >= 1 and player_index <= 9:
-            if(str(board[player_index-1]) not in 'XO'):
-                board[player_index-1] = tic_tac
+        otvet = input("Введите номер клетки куда поставить значение " + hod+"? ")
+        otv = int(otvet)
+        if otv >= 1 and otv <= 9:
+            if (str(doska[otv-1]) not in "XO"):
+                doska[otv-1] = hod
                 valid = True
             else:
-                print('Занято')
-        else:
-            print('Еще раз попробуй')
+                print ("Эта клетка занята")
 
-def victory_check(board):
-    victory = ((0,1,2),(3,4,5),(6,7,8),
-               (0,3,6),(1,4,7),(2,5,8),
-               (0,4,8),(2,4,6))
-    for i in victory:
-        if board[i[0]] == board[i[1]] == board[i[2]]:
-            return board[i[0]]
-    return False
+def kto_viigral(doska):
+    pobeda = ((0,1,2),(3,4,5),(6,7,8),(0,3,6),(1,4,7),(2,5,8),(0,4,8),(2,4,6))
+    for x in pobeda:
+        if doska[x[0]] == doska[x[1]] == doska[x[2]]:
+            return doska[x[0]]
+        return False
 
-def game(board):
-    counter =0
-    vic = False
-    while not vic:
-        design_board(board)
-        if counter % 2 == 0:
-            choice('X')
+def igra(doska):
+    count = 0
+    win = False
+    while not win:
+        draw_board(doska)
+        if count % 2 == 0:
+            stavim_hod("X")
         else:
-            choice('0')
-        counter +=1
-        if counter > 4:
-            tt_win = victory_check(board)
-            if tt_win:
-                print(tt_win,'Победа')
-                vic = True
+            stavim_hod("O")
+        count += 1
+        if count > 4:
+            m = kto_viigral(doska)
+            if m:
+                print (m, "Победил!")
+                win = True
                 break
-            if counter == 9:
-                print('Победила, ДРУЖБА)')
-        design_board(board)
-game(board)
+        if count == 9:
+            print ("Победила дружба!")
+            break
 
+draw_board(doska)
+
+igra(doska)
 
 # 4. Реализуйте RLE алгоритм: реализуйте модуль сжатия и восстановления данных.
 # Входные и выходные данные хранятся в отдельных текстовых файлах.
@@ -173,3 +181,43 @@ with open('file_decode.txt', 'w') as file:
 print('Decoded string: \t' + decoded_string)
 print('Encoded string: \t' + rle_encode(decoded_string))
 print(f'Compress ratio: \t{round(len(decoded_string) / len(encoded_string), 1)}')
+
+
+# Вариант решения задачи 2
+file5 = open('file5.txt', 'w')
+ex5 = 'AdddLLkkKKfffffffKKDDnnRR'
+file5.write(ex5)
+file5.close()
+
+
+def coding(txt):
+    count = 1
+    res = ''
+    for i in range(len(txt)-1):
+        if txt[i] == txt[i+1]:
+            count += 1
+    else:
+        res = res + str(count) + txt[i]
+        count = 1
+    if count > 1 or (txt[len(txt)-2] != txt[-1]):
+        res = res + str(count) + txt[-1]
+    return res
+
+def decoding(txt):
+    num = ''
+    res = ''
+    for i in range(len(txt)):
+        if not txt[i].isalpha():
+            num += txt[i]
+        else:
+            res = res + txt[i] * int(num)
+            num = ''
+    return res
+
+pol6 = open('file6.txt', 'w')
+coding (ex5)
+pol6.write(coding(ex5))
+
+print(coding(ex5))
+print(decoding(coding(ex5)))
+pol6.close()
