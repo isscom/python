@@ -19,12 +19,14 @@ else:
     k = k%len(data) #чтобы не выполнять лишних операций (в случае, если кол-во элементов превышает длинну последовательности)
     data_result = [data[i - k] for i in range(len(data))]
     
+    #        0  1  2  3  4
     # data: [1, 2, 3, 4, 5]
-    # i = 0: data[0 - 2] => data[-2]
-    # i = 1: data[1 - 2] => data[-1]
-    # i = 2: data[2 - 2] => data[0]
-    # i = 3: data[3 - 2] => data[1]
-    # i = 4: data[4 - 2] => data[2]
+    #        2  3  4  0  1
+    # i = 0: data[0 - 2] => data[-2] = 4
+    # i = 1: data[1 - 2] => data[-1] = 5
+    # i = 2: data[2 - 2] => data[0] = 1
+    # i = 3: data[3 - 2] => data[1] = 2
+    # i = 4: data[4 - 2] => data[2] = 3
     # data_result: [4, 5, 1, 2, 3]
     
     #data_result можно не заводить, а просто менять data

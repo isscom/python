@@ -7,3 +7,16 @@
 # Output: {'S005', 'S002', 'S007', 'S001', 'S009'}
 # Примечание: Список словарей задан изначально.
 # Пользователь его не вводит
+
+input_data = [{"V": "S001"}, {"V": "S002"}, {"VI": "S001"}, {"VI": "S005"}, {"VII": "S005"}, {"V":"S009"}, {"VIII":"S007"}]
+# LIST()           0              1                2            3                4               5                6
+# Внутри списка - словари
+result_dict = []
+auxiliary_tuple = [tuple(input_data[i].values()) for i in range(len(input_data))] #берем (не ключи!) а значения каждого i словаря по всей длине списка
+auxiliary_tuple  = set(auxiliary_tuple) #оставляем только неповторяющиеся значения (отсеиваем дубли)
+print(auxiliary_tuple)
+# {('S001',), ('S009',), ('S002',), ('S007',), ('S005',)}
+for i in auxiliary_tuple:
+    result_dict.append(i[0])
+print('Input: [{"V": "S001"}, {"V": "S002"}, {"VI": "S001"}, {"VI": "S005"}, {"VII": "S005"}, {"V":"S009"}, {"VIII":"S007"}]')
+print(f'Output: {result_dict}')
