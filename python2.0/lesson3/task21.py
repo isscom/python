@@ -19,11 +19,11 @@ for item in input_data: # проходимся в списке по каждом
     for key in item: # проходимся по значениям в словарях
         result_set.add(item[key]) # запоминаем внутри нашего множества
 print('Input: [{"V": "S001"}, {"V": "S002"}, {"VI": "S001"}, {"VI": "S005"}, {"VII": "S005"}, {"V":"S009"}, {"VIII":"S007"}]')
-print(f'Output: {result_set}')
+print(f'Output_1: {result_set}')
 # {'S005', 'S009', 'S007', 'S001', 'S002'}
 
 # РЕШЕНИЕ 2 (код короче)
-for item in input_data:
-    result_set_2.add(list(item.values())[0]) # делаем список из values словаря (первый элемент [0])
-print(f'Output: {result_set_2}')
+for item in input_data: # item это словарь (т.е. сохраняем словари из списка)
+    result_set_2.add(list(item.values())[0]) # делаем список из values словаря (первый элемент [0]): обращаемся к словарю, к ключу и получаем значение
+print(f'Output_2: {result_set_2}')
 # {'S005', 'S009', 'S007', 'S001', 'S002'}
