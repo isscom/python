@@ -7,8 +7,8 @@
 # 3 - (число Х)
 # -> 1 (раз)
 
-n = int(input('N: '))
+n = int(input())
 a = [i for i in range(1, n+1)]
-print(a)
-x = int(input('Х: '))
+print(*a)
+x = int(input())
 print(f'-> {sum([1 for element in a if element == x])}')
