@@ -23,18 +23,18 @@ print(max_number) # когда встретился n = 0 => выводим max_
 
 # Ваня:
 # n = int(input())
-# max_number = 1000
+# max_number = 1000 ------------ строчка не верна, т.к. возникает вероятность несрабатывания цикла (исправляем на n)
 # while n != 0:
 #  n = int(input())
-#  if max_number > n:
+#  if max_number > n: ------------ проверяем на минимум, а не на максимум
 #  max_number = n
 # print(max_number)
  
 # Петя:
 # n = int(input())
 # max_number = -1
-# while n < 0:
+# while n < 0: ------------ цикл завершается сразу после встречи положительного числа
 #  n = int(input())
 #  if max_number < n:
-#  n = max_number
-# print(n) 
+#  n = max_number ------------ нельзя записывать во введенное число max_number (наоборот)
+# print(n) ------------ выводим не максимальное число, а введенное n (почему-то)
