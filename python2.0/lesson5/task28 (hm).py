@@ -6,10 +6,10 @@
 # 2 2
 # 4
 
-def recsum(a, b):
+def rec_sumAB(a, b):
     if b == 0:
         return a
-    return 1 + recsum(a, b - 1)
+    return 1 + rec_sumAB(a, b - 1)
 
 # x = int(input('A: '))
 # y = int(input('B: '))
@@ -18,8 +18,9 @@ def recsum(a, b):
 
 # x, y = map(lambda x: int(x), input('Введите два числа через пробел:\n').split())
 
-array = [int(i) for i in input(f'Введите числа через пробел:\n').split()]
+# array = [int(i) for i in input(f'Введите числа через пробел:\n').split()]
+array = [int(input(f'{i+1}/{2} число: ')) for i in range(2)]
 x = array[0]
 y = array[1]
 
-print(recsum(x, y))
+print('\n', x, y, '\n', rec_sumAB(x, y))
