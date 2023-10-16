@@ -27,8 +27,8 @@ def find_farthest_orbit_1(list_of_orbit):
 
 # РЕШЕНИЕ_2: (через лямбда функцию)
 def find_farthest_orbit_2(list_of_orbit):
-    multiplication_list_without_circle = list(map(lambda x: x[0] * x[1] if x[0] != x[1] else 0, list_of_orbit)) # передаем список кортежей list_of_orbit,
-    # далее применяем к каждому из них функцию произведения элементов (в случае, если элементы не равны между собой, иначе - 0)
+    multiplication_list_without_circle = list(map(lambda x: x[0] * x[1] * (x[0] != x[1]), list_of_orbit)) # передаем список кортежей list_of_orbit,
+    # далее применяем к каждому из них функцию произведения элементов (также умножаем на 0 или 1: равны элементы, т.е. круг = 0, не равны, т.е. эллипс = 1)
     return list_of_orbit[multiplication_list_without_circle.index(max(multiplication_list_without_circle))]
     # далее возвращаем элемент списка (кортеж) где находится максимальное произведение
 
