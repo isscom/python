@@ -18,14 +18,23 @@
 
 # Гарантируется, что самая далекая планета ровно одна
 
-# РЕШЕНИЕ БЕЗ ПИ:
-def find_farthest_orbit(list_of_orbit):
+# РЕШЕНИЕ_1:
+def find_farthest_orbit_1(list_of_orbit):
     list_of_orbit_without_circle = [i for i in list_of_orbit if i[0] != i[1]] # исключаем из списка окружности (если в кортеже 2 одинаковых элемента)
     multiplication_list = [(i[0] * i[1]) for i in list_of_orbit_without_circle] # формируем список из произведений элементов (среди них будем искать максимальный)
     index_max_multiplication = multiplication_list.index(max(multiplication_list)) # находим индекс (положение) максимального значения в списке произведений
     return list_of_orbit_without_circle[index_max_multiplication] # возвращаем элемент с этим индексом
+
+# РЕШЕНИЕ_2: (через лямбда функцию)
+def find_farthest_orbit_2(list_of_orbit):
+    multiplication_list_without_circle = list(map(lambda x: x[0] * x[1] if x[0] != x[1] else 0, list_of_orbit)) # передаем список кортежей list_of_orbit,
+    # далее применяем к каждому из них функцию произведения элементов (в случае, если элементы не равны между собой, иначе - 0)
+    return list_of_orbit[multiplication_list_without_circle.index(max(multiplication_list_without_circle))]
+    # далее возвращаем элемент списка (кортеж) где находится максимальное произведение
+
 # Ввод:
 orbits = [(1, 3), (2.5, 10), (7, 2), (6, 6), (4, 3)]
-print(*find_farthest_orbit(orbits))
+print(*find_farthest_orbit_1(orbits))
+print(*find_farthest_orbit_2(orbits))
 # Вывод:
 # 2.5 10
