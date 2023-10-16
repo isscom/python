@@ -20,29 +20,12 @@
 
 # РЕШЕНИЕ БЕЗ ПИ:
 def find_farthest_orbit(list_of_orbit):
-    list_of_elliptical_orbits = [i for i in list_of_orbit if i[0] != i[1]] # возвращает новый список_1 (list_of_elliptical_orbits), где 1-ый элемент не равен 2-му
-    list_of_areas = [(i[0] * i[1]) for i in list_of_elliptical_orbits] # возвращает новый список_2 (list_of_areas) с произведениями элементов (1-й * 2-й)
-    max_area_index = list_of_areas.index(max(list_of_areas)) # возвращает индекс максимального элемента из списка_2 (list_of_areas)
-    return list_of_elliptical_orbits[max_area_index] # и возвращаем максимальный элемент из данного списка (с индексом макс. элемента)
-
-# РЕШЕНИЕ С ПИ:
-def find_farthest_orbit_2(list_of_orbit):
-    
-    orbits_max_pr = [(0, 0)] # переменная, куда будем закидывать значение с макс. произведением (число ПИ никак не влияет на сравнение площадей (произведений))
-    max_pr = 0 # переменная со значением макс. произведения
-    for i in list_of_orbit:
-         if i[0] != i[1]:
-             if max_pr < i[0] * i[1]: # если переменная с максимальным произведением меньше, чем макс. произведение очередного кортежа
-                 max_pr = i[0] * i[1] # считаем произведение очередного кортежа - максимальной и
-                 orbits_max_pr.pop() # удаляем предыдущее значение кортежа
-                 orbits_max_pr.append(i) # добавляем новое (чтобы в списке оставалось только максимальное)
-    return orbits_max_pr[0]
-
+    list_of_orbit_without_circle = [i for i in list_of_orbit if i[0] != i[1]] # исключаем из списка окружности (если в кортеже 2 одинаковых элемента)
+    multiplication_list = [(i[0] * i[1]) for i in list_of_orbit_without_circle] # формируем список из произведений элементов (среди них будем искать максимальный)
+    index_max_multiplication = multiplication_list.index(max(multiplication_list)) # находим индекс (положение) максимального значения в списке произведений
+    return list_of_orbit_without_circle[index_max_multiplication] # возвращаем элемент с этим индексом
 # Ввод:
 orbits = [(1, 3), (2.5, 10), (7, 2), (6, 6), (4, 3)]
-
 print(*find_farthest_orbit(orbits))
-print(*find_farthest_orbit_2(orbits))
 # Вывод:
-# 2.5 10
 # 2.5 10
